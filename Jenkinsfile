@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    APP_SERVER_HOST = "3.82.175.5"
+    APP_SERVER_HOST = "3.89.253.242"
   }
 
   stages {
