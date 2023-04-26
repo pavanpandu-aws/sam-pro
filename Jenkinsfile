@@ -33,9 +33,13 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sshagent(['app-server-creds']) {
-          sh "ssh -o StrictHostKeyChecking=no ${APP_SERVER_USER}@${APP_SERVER_HOST} 'docker pull ${DOCKER_HUB_USERNAME}/clumsy-bird:${BUILD_NUMBER}'"
-          sh "ssh -o StrictHostKeyChecking=no ${APP_SERVER_USER}@${APP_SERVER_HOST} 'docker run -d --name clumsy-bird -p 8001:8000 ${DOCKER_HUB_USERNAME}/clumsy-bird:${BUILD_NUMBER}'"
+        withCredentials([usernamePassword(credentialsId: 'docker-hub-creds',
+                                          passwordVariable: 'DOCKER_HUB_PASSWORD',
+                                          usernameVariable: 'DOCKER_HUB_USERNAME')]) {
+          sshagent(['app-server-creds']) {
+            sh "ssh -o StrictHostKeyChecking=no ${APP_SERVER_USER}@${APP_SERVER_HOST} 'docker pull ${DOCKER_HUB_USERNAME}/clumsy-bird:${BUILD_NUMBER}'"
+            sh "ssh -o StrictHostKeyChecking=no ${APP_SERVER_USER}@${APP_SERVER_HOST} 'docker run -d --name clumsy-bird -p 8001:8000 ${DOCKER_HUB_USERNAME}/clumsy-bird:${BUILD_NUMBER}'"
+          }
         }
       }
     }
