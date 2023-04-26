@@ -3,6 +3,7 @@ pipeline {
 
   environment {
     APP_SERVER_HOST = "3.89.253.242"
+    APP_SERVER_USER = "root"
   }
 
   stages {
