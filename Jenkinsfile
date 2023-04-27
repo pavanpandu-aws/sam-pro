@@ -15,6 +15,7 @@ pipeline {
 
     stage('Build') {
       steps {
+        sh 'npm install'
         sh 'docker build -t clumsy-bird:${BUILD_NUMBER} .'
       }
     }
