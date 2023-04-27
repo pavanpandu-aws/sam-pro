@@ -5,11 +5,10 @@ WORKDIR /home/ubuntu/clumsy
 
 # Install app dependencies
 COPY package*.json ./
+COPY . .
 RUN npm install
 RUN npm install -g grunt-cli liftup
 
-# Bundle app source
-COPY . .
 
 EXPOSE 8000
 
