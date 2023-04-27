@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    APP_SERVER_HOST = "3.89.253.242"
+    APP_SERVER_HOST = "3.94.54.230"
     APP_SERVER_USER = "root"
   }
 
