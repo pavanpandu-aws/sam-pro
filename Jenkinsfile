@@ -15,8 +15,6 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'export PATH="$HOME/.nvm/versions/node/v20.0.0/bin:$PATH"'
-        sh 'npm install'
         sh 'docker build -t clumsy-bird:${BUILD_NUMBER} .'
       }
     }
